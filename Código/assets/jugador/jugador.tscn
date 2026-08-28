@@ -1,0 +1,851 @@
+[gd_scene format=3 uid="uid://c0uy54g5k10h"]
+
+[ext_resource type="Script" uid="uid://ctofl2kyvdl4c" path="res://assets/jugador/jugador.gd" id="1_yxldw"]
+[ext_resource type="Texture2D" uid="uid://qhnefcycon8d" path="res://assets/obj/personaje/skin.png" id="2_2fr34"]
+[ext_resource type="ArrayMesh" uid="uid://bod4w8i8gwq5i" path="res://assets/obj/personaje/cabeza.obj" id="3_cabeza"]
+[ext_resource type="ArrayMesh" uid="uid://m6btprahdado" path="res://assets/obj/personaje/torso.obj" id="4_torso"]
+[ext_resource type="Script" uid="uid://cbueb4fl7aibk" path="res://assets/jugador/camera_3d.gd" id="4_uea0d"]
+[ext_resource type="ArrayMesh" uid="uid://cqjn7csmvu24m" path="res://assets/obj/personaje/brazo_izquierdo.obj" id="5_brazo_izquierdo"]
+[ext_resource type="ArrayMesh" uid="uid://c6wvo41r8caby" path="res://assets/obj/personaje/brazo_derecho.obj" id="6_brazo_derecho"]
+[ext_resource type="ArrayMesh" uid="uid://d2d8dlr027l83" path="res://assets/obj/personaje/pierna_izquierda.obj" id="7_pierna_izquierda"]
+[ext_resource type="ArrayMesh" uid="uid://lgxh1lgspa2t" path="res://assets/obj/personaje/pierna_derecha.obj" id="8_pierna_derecha"]
+[ext_resource type="PackedScene" uid="uid://cl7cjnmt1n6mq" path="res://assets/objetos/pistola.tscn" id="10_cn704"]
+[ext_resource type="Texture2D" uid="uid://cd2qm55ripl65" path="res://assets/objetos/mira.png" id="11_86ung"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jugador"]
+radius = 0.51464844
+height = 3.1872315
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqgpc"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_2fr34")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_pbmxw"]
+resource_name = "REINICIAR"
+length = 0.033333335
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/CabezaPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.4903858, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/torso:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.11538577, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Personaje/BrazoIzquierdoPivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.6, 2.4005558, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Personaje/BrazoDerechoPivot:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 2.4005558, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Personaje/PiernaIzquierdaPivot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2, 1.2, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Personaje/PiernaDerechaPivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 1.2, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Personaje/CabezaPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Personaje/torso:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uea0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Personaje/torso:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Personaje/CabezaPivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.365, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Personaje/BrazoIzquierdoPivot:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.6, 2.4005558, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Personaje/BrazoDerechoPivot:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 2.4005558, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Personaje/PiernaIzquierdaPivot:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2, 1.2, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Personaje/PiernaDerechaPivot:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 1.2, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Personaje/CabezaPivot:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Personaje/torso:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Personaje:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Personaje:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fymly"]
+resource_name = "a_cuatro"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.3962634, 1.0418022e-10, -0.0004363359), Vector3(-1.5707964, -0.0004363358, 0), Vector3(-1.7453293, 0, 0), Vector3(0, 0, -0.0004363358)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.3962634, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.7453293, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Personaje/torso:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0.215, 0), Vector3(0, 0.11538577, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Personaje/CabezaPivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1000004, 4.4, 4.7, 5, 5.3, 5.6000004, 5.9000006, 6.2000003, 6.5000005, 6.8, 7.1000004, 7.4, 7.7000003, 8, 8.3, 8.6, 8.9, 9.2, 9.5, 9.799999, 10.1, 10.4, 10.7, 11, 11.3, 11.6, 11.9, 12.2, 12.5, 12.8, 13.1, 13.4, 13.700001, 14, 14.3, 14.6, 14.9, 15.2, 15.5, 15.8, 16.099998, 16.391916, 16.691916, 16.991917, 17.291916, 17.591917, 17.891916, 18.191916, 18.491917, 18.791916, 19.091915, 19.391916, 19.691917, 19.991917, 20.291916, 20.591917, 20.891916, 21.191917, 21.491917, 21.791916, 22.091917, 22.391916, 22.691917, 22.991917, 23.291916, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.365, 0), Vector3(0, 2.365, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.59, 0), Vector3(0, 2.4903858, 0), Vector3(0, 2.39, 0), Vector3(0, 2.365, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Personaje:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 23.3, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Personaje:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 23.283329, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bktmp"]
+resource_name = "andar_brazo_derecho"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.43633232, 0, 0), Vector3(0, 0, 0), Vector3(-0.43633232, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_86ung"]
+resource_name = "andar_brazo_izquierdo"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358), Vector3(-0.43633232, 0, 0), Vector3(0, 0, 0), Vector3(0.43633232, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g7m40"]
+resource_name = "andar_piernas"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.43633232, 0, 0), Vector3(0, 0, 0), Vector3(-0.43633232, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.43633232, 0, 0), Vector3(0, 0, 0), Vector3(0.43633232, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_woyws"]
+resource_name = "correr_brazo_derecho"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.6981317, 0, 0), Vector3(0, 0, 0), Vector3(-0.6981317, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5ww8"]
+resource_name = "correr_brazo_izquierdo"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358), Vector3(-0.6981317, 0, 0), Vector3(0, 0, 0), Vector3(0.6981317, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7k5ok"]
+resource_name = "correr_piernas"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.6981317, 0, 0), Vector3(0, 0, 0), Vector3(-0.6981317, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.6981317, 0, 0), Vector3(0, 0, 0), Vector3(0.6981317, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ftbt5"]
+resource_name = "polvo"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358), Vector3(-0.7853982, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.7853982, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_72jpj"]
+resource_name = "reposo_brazo_derecho"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoDerechoPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.008333445, 2.0083334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6, 2.4, 0), Vector3(0.6, 2.5333633, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/BrazoDerechoPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.10471976)]
+}
+
+[sub_resource type="Animation" id="Animation_cn704"]
+resource_name = "reposo_brazo_izquierdo"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.008333445, 2.0083334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.6, 2.4, 0), Vector3(-0.6, 2.5333633, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.008333445, 2.0083334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.10471976)]
+}
+
+[sub_resource type="Animation" id="Animation_rpprns"]
+resource_name = "reposo_piernas"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/PiernaIzquierdaPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Personaje/PiernaDerechaPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v2if1"]
+resource_name = "sostener_objeto"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0004363358), Vector3(-1.5707964, -0.00043633586, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v7muq"]
+resource_name = "sostener_objeto_parar"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Personaje/BrazoIzquierdoPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, -0.00043633586, 0), Vector3(0, 0, -0.0004363358)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86ung"]
+_data = {
+&"REINICIAR": SubResource("Animation_pbmxw"),
+&"RESET": SubResource("Animation_uea0d"),
+&"a_cuatro": SubResource("Animation_fymly"),
+&"andar_brazo_derecho": SubResource("Animation_bktmp"),
+&"andar_brazo_izquierdo": SubResource("Animation_86ung"),
+&"andar_piernas": SubResource("Animation_g7m40"),
+&"correr_brazo_derecho": SubResource("Animation_woyws"),
+&"correr_brazo_izquierdo": SubResource("Animation_n5ww8"),
+&"correr_piernas": SubResource("Animation_7k5ok"),
+&"polvo": SubResource("Animation_ftbt5"),
+&"reposo_brazo_derecho": SubResource("Animation_72jpj"),
+&"reposo_brazo_izquierdo": SubResource("Animation_cn704"),
+&"reposo_piernas": SubResource("Animation_rpprns"),
+&"sostener_objeto": SubResource("Animation_v2if1"),
+&"sostener_objeto_parar": SubResource("Animation_v7muq")
+}
+
+[node name="Jugador" type="CharacterBody3D" unique_id=462540416]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_yxldw")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=462540417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5928099, 0)
+shape = SubResource("CapsuleShape3D_jugador")
+
+[node name="Personaje" type="Node3D" parent="." unique_id=1819766389]
+
+[node name="CabezaPivot" type="Node3D" parent="Personaje" unique_id=290655980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.365, 0)
+
+[node name="cabeza" type="MeshInstance3D" parent="Personaje/CabezaPivot" unique_id=2144731322]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -2.375, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("3_cabeza")
+
+[node name="Camera_1ra" type="Camera3D" parent="Personaje/CabezaPivot" unique_id=1413148176]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, 0, 0.5162513, 0.4212116)
+current = true
+script = ExtResource("4_uea0d")
+
+[node name="Camera_2da" type="Camera3D" parent="Personaje/CabezaPivot" unique_id=964866308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51600003, 4.3806467)
+
+[node name="Camera_3ra" type="Camera3D" parent="Personaje/CabezaPivot" unique_id=64136836]
+transform = Transform3D(-1, 4.1633363e-15, 8.742276e-08, -8.762591e-11, 0.9999995, -0.0010023713, -8.742272e-08, -0.0010023713, -0.9999995, 0, 0.51600003, -4.8446875)
+
+[node name="torso" type="MeshInstance3D" parent="Personaje" unique_id=1170203943]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("4_torso")
+
+[node name="BrazoIzquierdoPivot" type="Node3D" parent="Personaje" unique_id=11589423]
+transform = Transform3D(1.0000001, 0.0004363353, 0, -0.00043633592, 0.99999875, 0, 0, 0, 1.0000001, -0.6, 2.4005558, 0)
+
+[node name="brazo_izquierdo" type="MeshInstance3D" parent="Personaje/BrazoIzquierdoPivot" unique_id=11589422]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, -2.4, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("5_brazo_izquierdo")
+
+[node name="Armas" type="Node3D" parent="Personaje/BrazoIzquierdoPivot/brazo_izquierdo" unique_id=548871339]
+transform = Transform3D(9.999997, -0.0043633576, 0, 0.00436336, 10.000002, 0, 0, 0, 9.999997, 0.010473225, -0.0029470532, 0)
+
+[node name="pistola" parent="Personaje/BrazoIzquierdoPivot/brazo_izquierdo/Armas" unique_id=817487106 instance=ExtResource("10_cn704")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.59095323, 1.27113, 0.05246745)
+visible = false
+
+[node name="BrazoDerechoPivot" type="Node3D" parent="Personaje" unique_id=90995290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.4005558, 0)
+
+[node name="brazo_derecho" type="MeshInstance3D" parent="Personaje/BrazoDerechoPivot" unique_id=909952889]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.6, -2.4, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("6_brazo_derecho")
+
+[node name="PiernaIzquierdaPivot" type="Node3D" parent="Personaje" unique_id=540903658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.2, 0)
+
+[node name="pierna_izquierda" type="MeshInstance3D" parent="Personaje/PiernaIzquierdaPivot" unique_id=540903657]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.2, -1.2, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("7_pierna_izquierda")
+
+[node name="PiernaDerechaPivot" type="Node3D" parent="Personaje" unique_id=204648729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.2, 0)
+
+[node name="pierna_derecha" type="MeshInstance3D" parent="Personaje/PiernaDerechaPivot" unique_id=2046487271]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.2, -1.2, 0)
+material_override = SubResource("StandardMaterial3D_wqgpc")
+mesh = ExtResource("8_pierna_derecha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=576687185]
+libraries/ = SubResource("AnimationLibrary_86ung")
+
+[node name="AnimationPlayerBrazoDerecho" type="AnimationPlayer" parent="." unique_id=576687186]
+libraries/ = SubResource("AnimationLibrary_86ung")
+
+[node name="AnimationPlayerBrazoIzquierdo" type="AnimationPlayer" parent="." unique_id=576687187]
+libraries/ = SubResource("AnimationLibrary_86ung")
+
+[node name="AnimationPlayerPiernas" type="AnimationPlayer" parent="." unique_id=576687188]
+libraries/ = SubResource("AnimationLibrary_86ung")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1495944696]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1434363527]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer" unique_id=356223056]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_86ung")
