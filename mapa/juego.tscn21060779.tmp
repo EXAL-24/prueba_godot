@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bd36ubood8a7t"]
+
+[ext_resource type="Script" uid="uid://cbtdlyt5cu6h5" path="res://mapa/juego.gd" id="1_8ous4"]
+[ext_resource type="PackedScene" uid="uid://dlm2e0e7pisbc" path="res://assets/objetos/suelo.tscn" id="1_f10bn"]
+[ext_resource type="PackedScene" uid="uid://cc13so5o5ri6" path="res://assets/objetos/casa.tscn" id="2_7wgw3"]
+[ext_resource type="PackedScene" uid="uid://c0uy54g5k10h" path="res://assets/jugador/jugador.tscn" id="3_7wgw3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env01"]
+
+[sub_resource type="Sky" id="Sky_env01"]
+sky_material = SubResource("ProceduralSkyMaterial_env01")
+
+[sub_resource type="Environment" id="Environment_env01"]
+background_mode = 2
+sky = SubResource("Sky_env01")
+ambient_light_source = 3
+ambient_light_energy = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0it6"]
+size = Vector3(0.08685303, 25.048927, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wj66l"]
+size = Vector3(0.08685303, 25.048927, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ous4"]
+size = Vector3(0.08685303, 25.048927, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vx1iq"]
+size = Vector3(0.08685303, 25.048927, 1)
+
+[node name="Node3D" type="Node3D" unique_id=439393201]
+script = ExtResource("1_8ous4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=987084765]
+environment = SubResource("Environment_env01")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=611663687]
+transform = Transform3D(0.8137977, -0.4545195, 0.3603604, 0, 0.6209616, 0.7838292, -0.5811541, -0.6378186, 0.5052046, 0, 40, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Mapa" type="Area3D" parent="." unique_id=327282017]
+
+[node name="Suelo" parent="Mapa" unique_id=334221420 instance=ExtResource("1_f10bn")]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+
+[node name="Casa" parent="Mapa" unique_id=1557052084 instance=ExtResource("2_7wgw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05485773, 1.4861872e-07, -0.67058945)
+
+[node name="Borde_Mapa" type="Area3D" parent="Mapa" unique_id=683646998]
+
+[node name="Borde_Mapa1" type="CollisionShape3D" parent="Mapa/Borde_Mapa" unique_id=264521621]
+transform = Transform3D(1, 0, 0, 0, 6.8337903, 0, 0, 0, 501.56906, 249.94617, 82.291504, 0)
+shape = SubResource("BoxShape3D_u0it6")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Borde_Mapa2" type="CollisionShape3D" parent="Mapa/Borde_Mapa" unique_id=263095773]
+transform = Transform3D(1, 0, 0, 0, 6.8337903, 0, 0, 0, 501.56906, -249.95584, 82.291504, 0)
+shape = SubResource("BoxShape3D_wj66l")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Borde_Mapa3" type="CollisionShape3D" parent="Mapa/Borde_Mapa" unique_id=923746353]
+transform = Transform3D(-4.371139e-08, 0, 501.56906, 0, 6.8337903, 0, -1, 0, -2.192428e-05, -0.004852295, 82.291504, -249.95102)
+shape = SubResource("BoxShape3D_8ous4")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Borde_Mapa4" type="CollisionShape3D" parent="Mapa/Borde_Mapa" unique_id=1155152605]
+transform = Transform3D(-4.371139e-08, 0, 501.56906, 0, 6.8337903, 0, -1, 0, -2.192428e-05, -0.0048217773, 82.291504, 249.95102)
+shape = SubResource("BoxShape3D_vx1iq")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Jugador" parent="." unique_id=462540416 instance=ExtResource("3_7wgw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25255698, 0.12499948, -0.47372246)
